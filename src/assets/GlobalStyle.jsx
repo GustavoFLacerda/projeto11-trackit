@@ -93,7 +93,7 @@ const GlobalStyle = createGlobalStyle`
         color: #FFFFFF;
     }
 
-    a[href="/cadastro"]{
+    a[href="/cadastro"], a[href="/"]{
         font-family: 'Lexend Deca';
         font-style: normal;
         font-weight: 400;
@@ -103,6 +103,43 @@ const GlobalStyle = createGlobalStyle`
         text-decoration-line: underline;
         color: #52B6FF;
         margin-top: 25px;
+    }
+
+    footer{
+        display: flex;
+        background: #FFFFFF;
+        height: 70px;
+        align-items: center;
+        position: fixed;
+        bottom: 0px;
+        width: 100%;
+        padding-left: 36px;
+        justify-content: space-between;
+    }
+
+    footer a{
+        font-family: 'Lexend Deca';
+        font-style: normal;
+       font-weight: 400;
+       font-size: 17.976px;
+       line-height: 22px;
+       text-align: center;
+       color: #52B6FF;
+       text-decoration: none;
+    }
+
+    footer button{
+        color: white;
+    }
+
+    body{
+        box-sizing: border-box;
+    }
+
+    ion-icon{
+        position: absolute;
+        top: 11px;
+        right: 11px;
     }
 `
 

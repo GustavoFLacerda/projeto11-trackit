@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import axios from "axios";
+import Dia from "../assets/Dia.jsx";
 
 export default function HabitCard(props){
 
@@ -16,14 +17,14 @@ export default function HabitCard(props){
 
     return(
        <Habito>
-        <DeleteButton onClick={deletarhabito}>Deletar</DeleteButton>
+        <ion-icon name="trash-outline" onClick={deletarhabito}></ion-icon>
         <h1>{props.name}</h1>
         <div>
             {
                 dias.map(
                     (d, index) => {
                         return(
-                            <Dia selecionado={props.days.includes(dias[index])}>{dias[index]}</Dia>
+                            <Dia selecionado={props.days.includes(index)}>{dias[index]}</Dia>
                         )
                     })
             }
@@ -32,11 +33,34 @@ export default function HabitCard(props){
     )
 }
 
-const Dia = styled.button`
-background: ${props => props.selecionado? "#CFCFCF" : "#D4D4D4" };
-`
 
 const DeleteButton = styled.button``;
 
-const Habito = styled.div``;
+const Habito = styled.div`
+height: 91px;
+background: #FFFFFF;
+border-radius: 5px;
+width: 100%;
+padding-left: 14px;
+display: flex;
+box-sizing: border-box;
+justify-content: space-between;
+position: relative;
+flex-direction: column;
+padding-bottom: 15px;
+padding-top: 13px;
 
+h1{
+    color: #666666;
+    font-family: 'Lexend Deca';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 19.976px;
+    line-height: 25px;
+}
+
+div{
+    display: flex;
+    gap: 4px;
+}
+`;

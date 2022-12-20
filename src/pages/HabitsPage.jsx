@@ -7,6 +7,7 @@ import AuthContext from "../contexts/AuthContext";
 import styled from "styled-components";
 import Footer from "../components/Footer.jsx";
 import Header from "../components/Header.jsx";
+import Main from "../assets/Main.jsx";
 
 export default function HabitsPage(){
 
@@ -57,8 +58,11 @@ export default function HabitsPage(){
     return(
         <>
         <Header/>
-        <h1>Meus hábitos</h1>
-        <button onClick={liberarcadastro}>+</button>
+        <Main>
+        <Container1>
+            <h1>Meus hábitos</h1>
+            <button onClick={liberarcadastro}>+</button>
+        </Container1>
         <HabitsContainer>
             {
                 cadastrando? 
@@ -67,7 +71,7 @@ export default function HabitsPage(){
                  : 
                 
                 ((!cadastrando && habitos.length === 0 ? 
-                    <h1>Você não tem nenhum hábito cadastrado ainda. Adicione um hábito para começar a trackear</h1>
+                    <h1>Você não tem nenhum hábito cadastrado ainda. Adicione um hábito para começar a trackear!</h1>
                     :
                     <>
                     {habitos.map(
@@ -82,11 +86,62 @@ export default function HabitsPage(){
             }
             
         </HabitsContainer>
+        </Main>
         <Footer />
         </>
     )
 }
 
-const HabitsContainer = styled.div``;
+const HabitsContainer = styled.div`
+width: 90%;
+display: flex;
+flex-direction: column;
+gap: 10px;
+
+h1{
+    font-family: 'Lexend Deca';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 17.976px;
+    line-height: 22px;
+    color: #666666;
+}
+`;
+
+const Container1 = styled.div`
+display: flex;
+justify-content: space-between;
+width: 90%;
+height: 35px;
+align-items: center;
+margin-top: 21px;
+margin-bottom: 28px;
+
+h1{
+    font-family: 'Lexend Deca';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 22.976px;
+    line-height: 29px;
+    color: #126BA5;
+}
+
+button{
+    width: 40px;
+    height: 35px;
+    background: #52B6FF;
+    border-radius: 4.63636px;
+    font-family: 'Lexend Deca';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 26.976px;
+    line-height: 34px;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 0;
+}
+`
 
 

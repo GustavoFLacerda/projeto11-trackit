@@ -3,7 +3,8 @@ import styled from "styled-components";
 import axios from "axios";
 import { useState, useEffect, useContext } from "react";
 import AuthContext from "../contexts/AuthContext";
-import logo from "../assets/images/logo.svg"
+import Logo from "../assets/Logo.jsx";
+
 
 export default function LoginPage(){
     const [loading, setLoading] = useState("notloading");
@@ -54,9 +55,7 @@ export default function LoginPage(){
 
     return(
         <>
-        <Logo>
-            <img src={logo} />
-        </Logo>
+        <Logo />
         <form onSubmit={fazerlogin}>
             <input type="text" name="email" placeholder="email" onChange={alterardados}></input>
             <input type="password" name="password" placeholder="senha" onChange={alterardados}></input>
@@ -69,10 +68,4 @@ export default function LoginPage(){
     )
 }
 
-const Logo = styled.div`
-margin-top: 68px;
-margin-bottom: 32px;
-width: 80%;
-display: flex;
-justify-content: center;
-`
+

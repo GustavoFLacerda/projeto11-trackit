@@ -1,6 +1,7 @@
 import { Navigate, useNavigate, Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import Logo from "../assets/Logo.jsx";
 
 
 export default function SignUpPage(){
@@ -41,6 +42,7 @@ export default function SignUpPage(){
 
     return(
         <>
+        <Logo />
         <form onSubmit={cadastrar}>
             <input type="email" name="email" placeholder="email" onChange={alterardados}></input>
             <input type="password" name="password" placeholder="senha" onChange={alterardados}></input>

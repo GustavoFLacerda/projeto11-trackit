@@ -3,20 +3,16 @@ import styled from "styled-components";
 
 export default function Footer(){
     return(
-        <FooterContainer>
+        <footer>
             <Link to="/habitos">
-                <button>Hábitos</button>
+                Hábitos
             </Link>
             <Link to="/hoje">
                 <button>Hoje</button>
             </Link>
             <Link to="/historico">
-                <button>Histórico</button>
+                Histórico
             </Link>
-        </FooterContainer>
+        </footer>
     )
 }
-
-const FooterContainer = styled.footer`
-display: flex;
-`
