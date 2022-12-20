@@ -9,8 +9,10 @@ export default function Header(){
 
     return(
         <HeaderContainer image={auth.image} >
-            <h1>TrackIt</h1>
-            <img />
+            <div>
+                <h1>TrackIt</h1>
+                <img />
+            </div>
         </HeaderContainer>
     )
 }
@@ -18,9 +20,8 @@ export default function Header(){
 const HeaderContainer = styled.div`
 width: 100%;
 display: flex;
-justify-content: space-between;
+justify-content: center;
 align-items: center;
-padding-left: 15px; 
 background: #126BA5;
 box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
 height: 70px;
@@ -42,6 +43,12 @@ img{
     border-radius: 98.5px;
     width: 51px;
     height: 51px;
-    margin-right: 15px;
+}
+
+div{
+    width: 90%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 `

@@ -6,6 +6,7 @@ import SignUpPage from "./pages/SignUpPage.jsx";
 import HistoryPage from "./pages/HistoryPage.jsx";
 import { AuthProvider } from "./contexts/AuthContext";
 import GlobalStyle from "./assets/GlobalStyle.jsx"
+import { ProgressProvider } from "./contexts/ProgressContext";
 
 export default function App(){
 
@@ -13,6 +14,7 @@ export default function App(){
         <>
         <GlobalStyle />
         <AuthProvider>
+        <ProgressProvider>
         <BrowserRouter>
             <Routes>
                 <Route path="/" element={<LoginPage />} />
@@ -21,13 +23,9 @@ export default function App(){
                 <Route path="/hoje" element={<TodayPage />} />
             </Routes>
         </BrowserRouter>
+        </ProgressProvider>
         </AuthProvider>
         </>
     )
 }
 
-/*                 <Route path="/hoje" element={<TodayPage />} />
-                <Route path="/historico" element={<HistoryPage />} />
-                 <Route path="/cadastro" element={<SignUpPage />} />
-                
-                */

@@ -114,7 +114,9 @@ const GlobalStyle = createGlobalStyle`
         bottom: 0px;
         width: 100%;
         padding-left: 36px;
+        padding-right: 36px;
         justify-content: space-between;
+        box-sizing: border-box;
     }
 
     footer a{
@@ -130,6 +132,26 @@ const GlobalStyle = createGlobalStyle`
 
     footer button{
         color: white;
+        background: #52B6FF;
+        width: 91px;
+        height: 91px;
+        border-radius: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border: 0;
+        font-family: 'Lexend Deca';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 17.976px;
+        line-height: 22px;
+        text-align: center;
+        position: absolute;
+        top: -30px;
+        left:0;
+        right:0;
+        margin-left:auto;
+        margin-right:auto;
     }
 
     body{

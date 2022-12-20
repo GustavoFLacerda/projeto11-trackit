@@ -4,6 +4,7 @@ import HabitCard from "../components/HabitCard.jsx"
 import CadastrarHabito from "../components/CadastrarHabito.jsx"
 import { useContext } from "react";
 import AuthContext from "../contexts/AuthContext";
+import ProgressContext from "../contexts/ProgressContext";
 import styled from "styled-components";
 import Footer from "../components/Footer.jsx";
 import Header from "../components/Header.jsx";
@@ -14,6 +15,7 @@ export default function HabitsPage(){
     const [cadastrando, setCadastrando] = useState(false);
     const [habitos, setHabitos] = useState(undefined);
     const { auth } = useContext(AuthContext);
+    const { progress } = useContext(ProgressContext);
 
 
 
