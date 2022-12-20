@@ -1,24 +1,26 @@
 import styled from "styled-components";
 import axios from "axios";
 import Dia from "../assets/Dia.jsx";
+import { useNavigate } from "react-router-dom";
 
 export default function HabitCard(props){
 
     const dias = ["D", "S", "T", "Q", "Q", "S", "S"];
+    const navigate = useNavigate();
 
     function deletarhabito(){
         axios.delete(`https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/${props.id}`,{
             headers:{
                 'Authorization': `Bearer ${props.token}`
             }})
-        .then(console.log);
+        .then(() => {navigate("/habitos");window.location.reload()});
         //pegar da api de novo;
     }
 
     return(
        <Habito>
         <ion-icon name="trash-outline" onClick={deletarhabito}></ion-icon>
-        <h1>{props.name}</h1>
+        <h1 onClick={() => {console.log(props.days)}}>{props.name}</h1>
         <div>
             {
                 dias.map(
@@ -33,8 +35,6 @@ export default function HabitCard(props){
     )
 }
 
-
-const DeleteButton = styled.button``;
 
 const Habito = styled.div`
 height: 91px;

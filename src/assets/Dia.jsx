@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 const Dia = styled.div`
-background: ${props => props.selecionado? "#CFCFCF" : "#D4D4D4" } !important;
+background: ${props => props.selecionado? "#C5C5C5 !important" : "#FFFFFF !important" };
 width: 30px;
 height: 30px;
 background: #FFFFFF;

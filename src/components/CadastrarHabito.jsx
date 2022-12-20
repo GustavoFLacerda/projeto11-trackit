@@ -16,7 +16,7 @@ const CadastrarHabito = (props) => {
  
     function selecionardia(index){
      if(days.includes(index)){
-           let filtered = days.filter((d) => d === index);
+           let filtered = days.filter((d) => d !== index);
            setDays([...filtered]);
      }
      else{
@@ -25,6 +25,10 @@ const CadastrarHabito = (props) => {
          setDays([...newdays]);
      }
     }
+
+    useEffect(() => {
+        console.log(days)
+    }, [days])
  
     function cadastrarhabito(e){
        e.preventDefault();
@@ -48,7 +52,7 @@ const CadastrarHabito = (props) => {
                   {
                      dias.map((d, index) => {
                          return(
-                             <Dia onClick={selecionardia} selecionado={days.includes(dias[index])}>{dias[index]}</Dia>
+                             <DiaCadastroCard name={dias[index]} id={index} selecionardia={selecionardia} selecionado={days.includes(index)}></DiaCadastroCard>
                          )
                      })
                   }
@@ -62,7 +66,11 @@ const CadastrarHabito = (props) => {
  }
 
 
-
+const DiaCadastroCard = (props) => {
+    return(
+        <Dia onClick={() => props.selecionardia(props.id)} selecionado={props.selecionado}>{props.name}</Dia>
+    )
+}
 
 const ContainerForm = styled.form`
 height: 180px;
