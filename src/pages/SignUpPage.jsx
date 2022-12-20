@@ -2,7 +2,7 @@ import { Navigate, useNavigate, Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import Logo from "../assets/Logo.jsx";
-
+import { ThreeDots } from 'react-loader-spinner';
 
 export default function SignUpPage(){
    
@@ -48,7 +48,12 @@ export default function SignUpPage(){
             <input type="password" name="password" placeholder="senha" onChange={alterardados}></input>
             <input type="text" name="name" placeholder="nome" onChange={alterardados}></input>
             <input type="text" name="image" placeholder="foto" onChange={alterardados}></input>
-            <button type="submit" disabled={loading ? true : false}>Cadastrar</button>
+            <button type="submit" disabled={loading ? true : false}>
+            {
+            loading
+              ? <ThreeDots color="#FFFFFF" height={50} width={50} />
+              : "Cadastrar"
+               }</button>
         </form>
         <Link to="/">
             Já tem uma conta? Faça login!

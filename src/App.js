@@ -21,6 +21,7 @@ export default function App(){
                 <Route path="/habitos" element={<HabitsPage />} />
                 <Route path="/cadastro" element={<SignUpPage />} />
                 <Route path="/hoje" element={<TodayPage />} />
+                <Route path="/historico" element={<HistoryPage />} />
             </Routes>
         </BrowserRouter>
         </ProgressProvider>

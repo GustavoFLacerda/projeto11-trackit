@@ -4,10 +4,11 @@ import axios from "axios";
 import { useState, useEffect, useContext } from "react";
 import AuthContext from "../contexts/AuthContext";
 import Logo from "../assets/Logo.jsx";
+import { ThreeDots } from 'react-loader-spinner';
 
 
 export default function LoginPage(){
-    const [loading, setLoading] = useState("notloading");
+    const [loading, setLoading] = useState(false);
     const [dados, setDados] = useState({email: "", password: ""});
     const navigate = useNavigate();
     const { auth, login } = useContext(AuthContext);
@@ -15,7 +16,7 @@ export default function LoginPage(){
 
     function fazerlogin(e){
         e.preventDefault();
-        setLoading("loading");
+        setLoading(true);
         axios.post("https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/auth/login", dados)
         .then(
             (res) => {
@@ -59,7 +60,13 @@ export default function LoginPage(){
         <form onSubmit={fazerlogin}>
             <input type="text" name="email" placeholder="email" onChange={alterardados}></input>
             <input type="password" name="password" placeholder="senha" onChange={alterardados}></input>
-            <button type="submit">Entrar</button>
+            <button type="submit">
+               {
+            loading
+              ? <ThreeDots color="#FFFFFF" height={50} width={50} />
+              : "Entrar"
+               }
+            </button>
         </form>
         <Link to="cadastro">
             Não tem uma conta? Cadastre-se!
