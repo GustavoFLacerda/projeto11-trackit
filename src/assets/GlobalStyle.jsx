@@ -130,7 +130,7 @@ const GlobalStyle = createGlobalStyle`
        text-decoration: none;
     }
 
-    footer button{
+    footer a[href="/hoje"]{
         color: white;
         background: #52B6FF;
         width: 91px;

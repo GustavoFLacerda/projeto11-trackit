@@ -19,6 +19,11 @@ export default function SignUpPage(){
                 navigate("/")
             }
         )
+        .catch(
+            (err) => {
+                setLoading(false);
+            }
+        )
         //Bad request 422
     }
 

@@ -30,38 +30,13 @@ export default function HistoryPage(){
             }
         )
     }, []);
-    function completedAllHabits(habits) {
-        return habits.filter(habit => habit.done).length !== 0;
-      }
-     
-    if (historic === null) {
-        return <h1>Carregando...</h1>
-      }
-
-    function getCorrectClassName({ date }) {
-        const formattedDate = dayjs(date).format("DD/MM/YYYY");
-
-        const successDays = historic.filter(day => completedAllHabits(day.habits));
-    const failureDays = historic.filter(day => !successDays.includes(day));
     
-        if (failureDays.find(x => x.day === formattedDate)) {
-          return 'failure'
-        }
-    
-        if (successDays.find(x => x.day === formattedDate)) {
-          return 'success'
-        }
-      }
-
     return(
         <>
         <Header />
         <Main>
             <StyledH1>Histórico</StyledH1>
             <StyledCalendar 
-                      onChange={setSelectedDate}
-                      value={selectedDate}
-                      tileClassName={getCorrectClassName}
                       locale="pt-BR"
                       formatDay={(_, date) => dayjs(date).format('DD')}
             />
