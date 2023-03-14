@@ -16,6 +16,7 @@ export default function HistoryPage(){
     const [selectedDate, setSelectedDate] = useState(new Date());
     const { auth } = useContext(AuthContext);
     const { updateProgress } = useContext(ProgressContext);
+    const [donehabits, setDoneHabits] = useState([]);
 
     useEffect(() => {
         axios.get("https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/history/daily", {
@@ -24,13 +25,13 @@ export default function HistoryPage(){
             }
         })
         .then(
-            (res) => {setHistoric(res.data)
-            const doneHabits = res.data.filter(habit => habit.done);
-            updateProgress(doneHabits.length, res.data.length);
+            (res) => {setHistoric(res.data);
+                const newar = res.data.filter(day => day.habits.done === true);
+                //é array mais é necessario
             }
         )
     }, []);
-    
+
     return(
         <>
         <Header />
@@ -39,6 +40,7 @@ export default function HistoryPage(){
             <StyledCalendar 
                       locale="pt-BR"
                       formatDay={(_, date) => dayjs(date).format('DD')}
+                      tileClassName={({ date } ) => donehabits.includes(dayjs(date).format('DD')) ? 'done' : 'notdone'}
             />
         </Main>
         <Footer />
