@@ -85,7 +85,7 @@ const CadastrarHabito = (props) => {
                   {
                      dias.map((d, index) => {
                          return(
-                             <DiaCadastroCard name={dias[index]} id={index} selecionardia={selecionardia} selecionado={days.includes(index)}></DiaCadastroCard>
+                             <DiaCadastroCard loading={loading} name={dias[index]} id={index} selecionardia={selecionardia} selecionado={days.includes(index)}></DiaCadastroCard>
                          )
                      })
                   }
@@ -107,7 +107,7 @@ const CadastrarHabito = (props) => {
 
 const DiaCadastroCard = (props) => {
     return(
-        <Dia disabled={loading} data-test="habit-day" onClick={() => props.selecionardia(props.id)} selecionado={props.selecionado}>{props.name}</Dia>
+        <Dia disabled={props.loading} data-test="habit-day" onClick={() => props.selecionardia(props.id)} selecionado={props.selecionado}>{props.name}</Dia>
     )
 }
 
