@@ -5,6 +5,7 @@ import { useContext } from "react";
 import AuthContext from "../contexts/AuthContext";
 import styled from "styled-components";
 import Dia from "../assets/Dia.jsx"
+import ProgressContext from "../contexts/ProgressContext.jsx";
 
 
 const CadastrarHabito = (props) => {
@@ -13,16 +14,19 @@ const CadastrarHabito = (props) => {
     const [dados, setDados] = useState({});
     const dias = ["D", "S", "T", "Q", "Q", "S", "S"];
     const { auth } = useContext(AuthContext);
+    const { updateProgress } = useContext(ProgressContext)
  
     function selecionardia(index){
      if(days.includes(index)){
            let filtered = days.filter((d) => d !== index);
            setDays([...filtered]);
+           setDados({...dados, days: filtered});
      }
      else{
          let newdays = [...days, index];
-         newdays.sort((d1, d2) => d1 > d2? -1 : 1);
+         newdays.sort((d1, d2) => d1 > d2? 1 : -1);
          setDays([...newdays]);
+         setDados({...dados, days: newdays})
      }
     }
 
@@ -40,6 +44,19 @@ const CadastrarHabito = (props) => {
          (res) => {
              props.setHabitos([...props.habitos, res.data]);
              props.setCadastrando(false);
+             console.log(dados);
+             axios.get(`https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/today`,{
+                headers:{
+                  'Authorization': `Bearer ${auth.token}`
+                 }})
+                .then(
+                    (res) => {
+                        const filtrado = res.data;
+                        const doneHabits = filtrado.filter(habit => habit.done);
+                        updateProgress(doneHabits.length, filtrado.length);
+                    }
+                )
+
          }
        )
     }
@@ -47,7 +64,7 @@ const CadastrarHabito = (props) => {
  
      return(
          <ContainerForm onSubmit={cadastrarhabito}>
-             <input type="text" onChange={(e) => setDados({name: e.target.value, days})} name="name" placeholder="nome do hábito" />
+             <input type="text" onChange={(e) => {setDados({name: e.target.value, days}); console.log({name: e.target.value, days})}} name="name" placeholder="nome do hábito" />
              <div>
                   {
                      dias.map((d, index) => {

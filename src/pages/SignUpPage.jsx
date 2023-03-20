@@ -1,14 +1,16 @@
 import { Navigate, useNavigate, Link } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import Logo from "../assets/Logo.jsx";
 import { ThreeDots } from 'react-loader-spinner';
+import AuthContext from "../contexts/AuthContext.jsx";
 
 export default function SignUpPage(){
    
     const [cadastro, setCadastro] = useState({email: "", password: "", name: "", image:""});
     const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
+    const { auth } = useContext(AuthContext)
 
     function cadastrar(e){
         e.preventDefault();
@@ -22,6 +24,7 @@ export default function SignUpPage(){
         .catch(
             (err) => {
                 setLoading(false);
+                alert("Ocorreu um erro, tente novamente.")
             }
         )
         //Bad request 422
@@ -42,8 +45,10 @@ export default function SignUpPage(){
     }
 
     useEffect(() => {
-        console.log(cadastro)
-    }, [cadastro])
+        if (auth && auth.token) {
+          navigate("/hoje");
+        }
+      }, []); 
 
     return(
         <>

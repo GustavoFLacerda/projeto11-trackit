@@ -1,27 +1,19 @@
-import dayjs from 'dayjs';
-import ptBr from "dayjs/locale/pt-br";
 import styled from 'styled-components';
 
 export default function Data() {
-    let date = dayjs().date();
-    let month = dayjs().month() + 1;
-    let weekDay = dayjs().day();
-    let weekDayExtended = dayjs(weekDay).locale(ptBr).format('dddd').replace("-feira", "");
-  
-    if (date < 10) {
-      date = 0 + date.toString();
-    }
-  
-    if (month < 10) {
-      month = 0 + month.toString();
-    }
+    let data = new Date();
+    let month = data.getMonth() + 1;
+    let diasemana = data.getDay();
+    let diames = data.getDate();
+    let dias = ["domingo", "segunda", "terça", "quarta", "quinta", "sexta", "sábado"];
+
   
     return (
-      <Paragraph>{weekDayExtended}, {date}/{month}</Paragraph>
+      <Titulo>{dias[diasemana]}, {diames}/{"0" + month}</Titulo>
     )
 }
 
-const Paragraph = styled.h1`
+const Titulo = styled.h1`
 color: #126BA5;
     font-family: 'Lexend Deca';
     font-style: normal;

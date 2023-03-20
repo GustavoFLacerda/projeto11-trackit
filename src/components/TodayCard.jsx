@@ -2,27 +2,41 @@ import styled from "styled-components";
 import axios from "axios";
 import { useState, useContext } from "react";
 import AuthContext from "../contexts/AuthContext";
+import ProgressContext from "../contexts/ProgressContext";
 
 export default function TodayCard(props){
 
     const [feito, setFeito] = useState(props.done);
     const { auth } = useContext(AuthContext);
+    const { updateProgress } = useContext(ProgressContext);
     console.log(props.id);
 
     function definirfeito(){
         if(feito){
-            setFeito(false)
+            setFeito(false);
+            props.setDoneHabitsQuantity(props.doneHabitsQuantity - 1);
             axios.post(`https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/${props.id}/uncheck`, null, {
                 headers:{
                     'Authorization': `Bearer ${auth.token}`
                 }})
+                .then(
+                    (res) => {
+                        updateProgress(props.doneHabitsQuantity - 1, props.habitsquantity);
+                    }
+                )
         }
         else{
             setFeito(true);
+            props.setDoneHabitsQuantity(props.doneHabitsQuantity + 1);
             axios.post(`https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/${props.id}/check`, null, {
                 headers:{
                     'Authorization': `Bearer ${auth.token}`
                 }})
+                .then(
+                    (res) => {
+                        updateProgress(props.doneHabitsQuantity + 1, props.habitsquantity);
+                    }
+                )
         }
         
     }

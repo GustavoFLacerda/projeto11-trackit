@@ -14,6 +14,7 @@ export default function TodayPage(){
     const { auth } = useContext(AuthContext);
     const [today, setToday] = useState(undefined);
     const { progress, updateProgress } = useContext(ProgressContext);
+    const [ habitsquantity, setHabitsQuantity ] = useState(0)
     const [doneHabitsQuantity, setDoneHabitsQuantity] = useState(0);
 
     useEffect(
@@ -25,9 +26,11 @@ export default function TodayPage(){
             } )
             .then(
                 (res) => {setToday(res.data);
+                    console.log(res.data)
                     const filtrado = res.data;
                     const doneHabits = filtrado.filter(habit => habit.done);
                     console.log(doneHabits);
+                    setHabitsQuantity(filtrado.length);
                     updateProgress(doneHabits.length, filtrado.length);
                     setDoneHabitsQuantity(doneHabits.length);
                 }
@@ -36,9 +39,7 @@ export default function TodayPage(){
     , [])
 
     if(!today){
-        return(
-            <h1>Carregando...</h1>
-        )
+        return <h1>Carregando...</h1>
     }
 
     return(
@@ -49,19 +50,23 @@ export default function TodayPage(){
             <Data />
             <Subtitle doneHabitsQuantity={doneHabitsQuantity}>
             {
-              doneHabitsQuantity === 0
+               doneHabitsQuantity === 0
               ? "Nenhum hábito concluído ainda"
               : `${progress.toFixed(0)}% dos hábitos concluídos`
             }
             </Subtitle>
         </TodayInfo>
         <TodayContainer>
-            {today.map((t) => {
+            {
+            today.map((t) => {
                 return(
                     <TodayCard 
                     id={t.id} 
+                    doneHabitsQuantity={doneHabitsQuantity}
+                    setDoneHabitsQuantity={setDoneHabitsQuantity}
+                    habitsquantity={habitsquantity}
                     name={t.name} 
-                    done={t.done} 
+                    done={t.done}
                     currentSequence={t.currentSequence}
                     highestSequence={t.highestSequence}
                     />

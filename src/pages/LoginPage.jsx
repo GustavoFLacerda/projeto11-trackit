@@ -24,13 +24,19 @@ export default function LoginPage(){
                 navigate("/hoje");
             }
         )
+        .catch(
+            (err) => {
+                setLoading(false);
+                alert("Ocorreu um erro, tente novamente.")
+            }
+        )
     }
 
     useEffect(() => {
         if (auth && auth.token) {
           navigate("/hoje");
         }
-      }, []);
+      }, []); 
 
     useEffect(() => {
         console.log(auth)

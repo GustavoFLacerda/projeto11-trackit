@@ -2,19 +2,45 @@ import styled from "styled-components";
 import axios from "axios";
 import Dia from "../assets/Dia.jsx";
 import { useNavigate } from "react-router-dom";
+import ProgressContext from "../contexts/ProgressContext.jsx";
+import { useContext } from "react";
 
 export default function HabitCard(props){
 
     const dias = ["D", "S", "T", "Q", "Q", "S", "S"];
     const navigate = useNavigate();
+    const { updateProgress } = useContext(ProgressContext);
+
+    
 
     function deletarhabito(){
-        axios.delete(`https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/${props.id}`,{
+        let mesmo = window.confirm("Tem certeza que gostaria de deletar o hábito?");
+        if(mesmo){
+            axios.delete(`https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/${props.id}`,{
             headers:{
                 'Authorization': `Bearer ${props.token}`
             }})
-        .then(() => {navigate("/habitos");window.location.reload()});
-        //pegar da api de novo;
+        .then(
+            (res) => {
+                let filtrados = props.habitos.filter(h => h.id !== props.id);
+                console.log(filtrados)
+                props.setHabitos([...filtrados]);
+                axios.get(`https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/today`,{
+                headers:{
+                  'Authorization': `Bearer ${props.token}`
+                 }})
+                .then(
+                    (res) => {
+                        const filtrado = res.data;
+                        const doneHabits = filtrado.filter(habit => habit.done);
+                        updateProgress(doneHabits.length, filtrado.length);
+                    }
+                )
+                
+            }
+        )
+        }
+        
     }
 
     return(

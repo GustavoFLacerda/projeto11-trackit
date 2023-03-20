@@ -50,12 +50,6 @@ export default function HabitsPage(){
         }
     }
 
-    function deletarhabito(id){
-        axios.delete(`https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/${id}`,{
-            headers:{
-                'Authorization': `Bearer ${auth.token}`
-            }})
-    }
 
     return(
         <>
@@ -72,19 +66,19 @@ export default function HabitsPage(){
 
                  : 
                 
-                ((!cadastrando && habitos.length === 0 ? 
+                (!cadastrando && habitos.length === 0 ? 
                     <h1>Você não tem nenhum hábito cadastrado ainda. Adicione um hábito para começar a trackear!</h1>
                     :
                     <>
                     {habitos.map(
                         (h) => {
                             return(
-                                <HabitCard name={h.name} days={h.days} id={h.id} token={auth.token}/>
+                                <HabitCard name={h.name} days={h.days} id={h.id} token={auth.token} habitos={habitos} setHabitos={setHabitos}/>
                             )
                         }
                     )}
                     </>
-                    ))
+                    )
             }
             
         </HabitsContainer>

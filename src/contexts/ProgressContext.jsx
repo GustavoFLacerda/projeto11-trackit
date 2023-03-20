@@ -5,13 +5,12 @@ const ProgressContext = createContext();
 export function ProgressProvider({ children }) {
   const [progress, setProgress] = useState('');
 
-  function updateProgress(progressed, total) {
+  function updateProgress(progresso, total) {
     if (total === 0) {
       setProgress(0);
-      return;
     }
 
-    setProgress((progressed / total) * 100);
+    setProgress((progresso / total) * 100);
   }
 
   return (
