@@ -64,9 +64,9 @@ export default function LoginPage(){
         <>
         <Logo />
         <form onSubmit={fazerlogin}>
-            <input type="text" name="email" placeholder="email" onChange={alterardados}></input>
-            <input type="password" name="password" placeholder="senha" onChange={alterardados}></input>
-            <button type="submit">
+            <input type="text" name="email" data-test="email-input" placeholder="email" onChange={alterardados}></input>
+            <input type="password" data-test="password-input" name="password" placeholder="senha" onChange={alterardados}></input>
+            <button type="submit" data-test="login-btn" disabled={loading}>
                {
             loading
               ? <ThreeDots color="#FFFFFF" height={50} width={50} />
@@ -74,7 +74,7 @@ export default function LoginPage(){
                }
             </button>
         </form>
-        <Link to="cadastro">
+        <Link to="cadastro" data-test="signup-link">
             Não tem uma conta? Cadastre-se!
         </Link>
         </>

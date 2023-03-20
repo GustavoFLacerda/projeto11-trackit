@@ -44,15 +44,15 @@ export default function HabitCard(props){
     }
 
     return(
-       <Habito>
-        <ion-icon name="trash-outline" onClick={deletarhabito}></ion-icon>
-        <h1 onClick={() => {console.log(props.days)}}>{props.name}</h1>
+       <Habito data-test="habit-container">
+        <ion-icon data-test="habit-delete-btn" name="trash-outline" onClick={deletarhabito}></ion-icon>
+        <h1 data-test="habit-name">{props.name}</h1>
         <div>
             {
                 dias.map(
                     (d, index) => {
                         return(
-                            <Dia selecionado={props.days.includes(index)}>{dias[index]}</Dia>
+                            <Dia data-test="habit-day" selecionado={props.days.includes(index)}>{dias[index]}</Dia>
                         )
                     })
             }

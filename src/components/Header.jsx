@@ -8,7 +8,7 @@ export default function Header(){
     const { auth } = useContext(AuthContext);
 
     return(
-        <HeaderContainer image={auth.image} >
+        <HeaderContainer image={auth.image} data-test="header" >
             <div>
                 <h1>TrackIt</h1>
                 <img />

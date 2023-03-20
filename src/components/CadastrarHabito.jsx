@@ -6,6 +6,7 @@ import AuthContext from "../contexts/AuthContext";
 import styled from "styled-components";
 import Dia from "../assets/Dia.jsx"
 import ProgressContext from "../contexts/ProgressContext.jsx";
+import { ThreeDots } from 'react-loader-spinner';
 
 
 const CadastrarHabito = (props) => {
@@ -14,7 +15,8 @@ const CadastrarHabito = (props) => {
     const [dados, setDados] = useState({});
     const dias = ["D", "S", "T", "Q", "Q", "S", "S"];
     const { auth } = useContext(AuthContext);
-    const { updateProgress } = useContext(ProgressContext)
+    const { progress, updateProgress } = useContext(ProgressContext);
+    const [loading, setLoading] = useState(false);
  
     function selecionardia(index){
      if(days.includes(index)){
@@ -36,6 +38,7 @@ const CadastrarHabito = (props) => {
  
     function cadastrarhabito(e){
        e.preventDefault();
+       setLoading(true);
        axios.post("https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits", dados, {
          headers:{
              'Authorization': `Bearer ${auth.token}`
@@ -44,6 +47,7 @@ const CadastrarHabito = (props) => {
          (res) => {
              props.setHabitos([...props.habitos, res.data]);
              props.setCadastrando(false);
+             setLoading(false);
              console.log(dados);
              axios.get(`https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/today`,{
                 headers:{
@@ -54,6 +58,13 @@ const CadastrarHabito = (props) => {
                         const filtrado = res.data;
                         const doneHabits = filtrado.filter(habit => habit.done);
                         updateProgress(doneHabits.length, filtrado.length);
+                        console.log(progress);
+                    }
+                )
+                .catch(
+                    (err) => {
+                        setLoading(false);
+                        alert("Ocorreu um erro");
                     }
                 )
 
@@ -63,8 +74,8 @@ const CadastrarHabito = (props) => {
     
  
      return(
-         <ContainerForm onSubmit={cadastrarhabito}>
-             <input type="text" onChange={(e) => {setDados({name: e.target.value, days}); console.log({name: e.target.value, days})}} name="name" placeholder="nome do hábito" />
+         <ContainerForm onSubmit={cadastrarhabito} data-test="habit-create-container">
+             <input data-test="habit-name-input" type="text" onChange={(e) => {setDados({name: e.target.value, days}); console.log({name: e.target.value, days})}} name="name" placeholder="nome do hábito" />
              <div>
                   {
                      dias.map((d, index) => {
@@ -75,8 +86,14 @@ const CadastrarHabito = (props) => {
                   }
              </div>
              <ButtonContainer>
-                 <div onClick={() => props.setCadastrando(false)}>Cancelar</div>
-                 <button type="submit">Salvar</button>
+                 <div data-test="habit-create-cancel-btn" onClick={() => props.setCadastrando(false)} disabled={loading}>Cancelar</div>
+                 <button data-test="habit-create-save-btn" type="submit" disabled={loading}>
+                 {
+                   loading
+                   ? <ThreeDots color="#FFFFFF" height={50} width={50} />
+                   : "Salvar"
+               }
+                 </button>
              </ButtonContainer>
          </ContainerForm>
      )
@@ -85,7 +102,7 @@ const CadastrarHabito = (props) => {
 
 const DiaCadastroCard = (props) => {
     return(
-        <Dia onClick={() => props.selecionardia(props.id)} selecionado={props.selecionado}>{props.name}</Dia>
+        <Dia data-test="habit-day" onClick={() => props.selecionardia(props.id)} selecionado={props.selecionado}>{props.name}</Dia>
     )
 }
 

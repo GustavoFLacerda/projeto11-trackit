@@ -9,6 +9,7 @@ import Footer from "../components/Footer.jsx";
 import Header from "../components/Header.jsx";
 import Main from "../assets/Main.jsx";
 import dayjs from 'dayjs';
+import 'react-calendar/dist/Calendar.css';
 
 export default function HistoryPage(){
 
@@ -16,7 +17,8 @@ export default function HistoryPage(){
     const [selectedDate, setSelectedDate] = useState(new Date());
     const { auth } = useContext(AuthContext);
     const { updateProgress } = useContext(ProgressContext);
-    const [donehabits, setDoneHabits] = useState([]);
+    const [donedays, setDoneDays] = useState([]);
+    const historicofeito = false;
 
     useEffect(() => {
         axios.get("https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/history/daily", {
@@ -36,12 +38,20 @@ export default function HistoryPage(){
         <>
         <Header />
         <Main>
+        <HistoryContainer>
             <StyledH1>Histórico</StyledH1>
+            {
+                !historicofeito ? <Subtitle>Em breve você poderá ver o histórico dos seus hábitos aqui!</Subtitle> : 
             <StyledCalendar 
                       locale="pt-BR"
-                      formatDay={(_, date) => dayjs(date).format('DD')}
-                      tileClassName={({ date } ) => donehabits.includes(dayjs(date).format('DD')) ? 'done' : 'notdone'}
+                      tileClassName={
+                        ({ activeStartDate, date, view } ) => 
+                        view === 'month' && donedays.includes(dayjs(date).format('DD')) ? 'done' : 'notdone'
+                    }
+                      onClickDay={(value) => alert('Clicked day: ' +  value)}
             />
+            }
+        </HistoryContainer>
         </Main>
         <Footer />
         </>
@@ -57,6 +67,7 @@ font-size: 22.976px;
 line-height: 29px;
 margin-top: 28px;
 margin-bottom: 11px;
+align-self: flex-start;
 
 `
 
@@ -72,4 +83,22 @@ padding: 10px;
 button{
     background: ${props => props.tileClassName === 'sucess' ? "green" : (props.tileClassName === "failure" ? "red" : "white")}
 }
+`
+
+const Subtitle = styled.h1`
+    font-family: 'Lexend Deca';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 17.976px;
+    line-height: 22px;
+    color: #666666;
+
+`
+
+const HistoryContainer = styled.div`
+width: 90%;
+display: flex;
+flex-direction: column;
+gap: 10px;
+
 `

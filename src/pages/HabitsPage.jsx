@@ -53,11 +53,11 @@ export default function HabitsPage(){
 
     return(
         <>
-        <Header/>
+        <Header />
         <Main>
         <Container1>
             <h1>Meus hábitos</h1>
-            <button onClick={liberarcadastro}>+</button>
+            <button data-test="habit-create-btn" onClick={liberarcadastro}>+</button>
         </Container1>
         <HabitsContainer>
             {

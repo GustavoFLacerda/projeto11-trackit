@@ -54,18 +54,18 @@ export default function SignUpPage(){
         <>
         <Logo />
         <form onSubmit={cadastrar}>
-            <input type="email" name="email" placeholder="email" onChange={alterardados}></input>
-            <input type="password" name="password" placeholder="senha" onChange={alterardados}></input>
-            <input type="text" name="name" placeholder="nome" onChange={alterardados}></input>
-            <input type="text" name="image" placeholder="foto" onChange={alterardados}></input>
-            <button type="submit" disabled={loading ? true : false}>
+            <input type="email" data-test="email-input" name="email" placeholder="email" onChange={alterardados}></input>
+            <input type="password" data-test="password-input" name="password" placeholder="senha" onChange={alterardados}></input>
+            <input type="text" data-test="user-name-input" name="name" placeholder="nome" onChange={alterardados}></input>
+            <input type="text" name="image" data-test="user-image-input" placeholder="foto" onChange={alterardados}></input>
+            <button type="submit" data-test="signup-btn" disabled={loading ? true : false}>
             {
             loading
               ? <ThreeDots color="#FFFFFF" height={50} width={50} />
               : "Cadastrar"
                }</button>
         </form>
-        <Link to="/">
+        <Link to="/" data-test="login-link">
             Já tem uma conta? Faça login!
         </Link>
         </>

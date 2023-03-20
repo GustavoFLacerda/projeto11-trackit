@@ -44,11 +44,11 @@ export default function TodayPage(){
 
     return(
         <>
-        <Header/>
+        <Header />
         <Main>
         <TodayInfo>
-            <Data />
-            <Subtitle doneHabitsQuantity={doneHabitsQuantity}>
+            <Data data-test="today" />
+            <Subtitle data-test="today-counter" doneHabitsQuantity={doneHabitsQuantity}>
             {
                doneHabitsQuantity === 0
               ? "Nenhum hábito concluído ainda"

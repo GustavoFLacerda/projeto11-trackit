@@ -10,11 +10,11 @@ export default function Footer(){
     const { progress } = useContext(ProgressContext);
 
     return(
-        <footer>
-            <Link to="/habitos">
+        <footer data-test="menu">
+            <Link to="/habitos" data-test="habit-link">
                 Hábitos
             </Link>
-            <Link to="/hoje">
+            <Link to="/hoje" data-test="today-link">
                <CircularProgressbar value={progress} 
                background
                backgroundPadding={6}
@@ -26,7 +26,7 @@ export default function Footer(){
                })}
                text="Hoje" />
             </Link>
-            <Link to="/historico">
+            <Link to="/historico" data-test="history-link">
                 Histórico
             </Link>
         </footer>

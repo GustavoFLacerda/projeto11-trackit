@@ -42,13 +42,13 @@ export default function TodayCard(props){
     }
 
     return(
-        <TodayCardStyle>
+        <TodayCardStyle data-test="today-habit-container">
             <div>
-                <h1>{props.name}</h1>
-                <h4>Sequência atual: {props.currentSequence} dias</h4>
-                <h4>Seu recorde: {props.highestSequence} dias</h4>
+                <h1 data-test="today-habit-name">{props.name}</h1>
+                <h4 data-test="today-habit-sequence">Sequência atual: {props.currentSequence} dias</h4>
+                <h4 data-test="today-habit-record">Seu recorde: {props.highestSequence} dias</h4>
             </div>
-            <Done onClick={definirfeito} feito={feito}>✓</Done>
+            <Done data-test="today-habit-check-btn" onClick={definirfeito} feito={feito}>✓</Done>
         </TodayCardStyle>
     )
 }
