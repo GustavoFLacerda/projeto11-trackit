@@ -39,6 +39,10 @@ const CadastrarHabito = (props) => {
     function cadastrarhabito(e){
        e.preventDefault();
        setLoading(true);
+       if(dados.name === ""){
+        alert("Erro: nome de hábito vazio")
+       }
+       else{
        axios.post("https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits", dados, {
          headers:{
              'Authorization': `Bearer ${auth.token}`
@@ -70,6 +74,7 @@ const CadastrarHabito = (props) => {
 
          }
        )
+    }
     }
     
  
