@@ -11,7 +11,7 @@ export default function Header(){
         <HeaderContainer image={auth.image} data-test="header" >
             <div>
                 <h1>TrackIt</h1>
-                <img />
+                <div />
             </div>
         </HeaderContainer>
     )
@@ -38,9 +38,9 @@ line-height: 49px;
 color: white;
 }
 
-img{
+div div{
     background: url(${props => props.image});
-    border-radius: 98.5px;
+    border-radius: 50%;
     width: 51px;
     height: 51px;
 }

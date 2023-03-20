@@ -54,10 +54,10 @@ export default function SignUpPage(){
         <>
         <Logo />
         <form onSubmit={cadastrar}>
-            <input type="email" data-test="email-input" name="email" placeholder="email" onChange={alterardados}></input>
-            <input type="password" data-test="password-input" name="password" placeholder="senha" onChange={alterardados}></input>
-            <input type="text" data-test="user-name-input" name="name" placeholder="nome" onChange={alterardados}></input>
-            <input type="text" name="image" data-test="user-image-input" placeholder="foto" onChange={alterardados}></input>
+            <input type="email" disabled={loading} data-test="email-input" name="email" placeholder="email" onChange={alterardados}></input>
+            <input type="password" disabled={loading} data-test="password-input" name="password" placeholder="senha" onChange={alterardados}></input>
+            <input type="text" disabled={loading} data-test="user-name-input" name="name" placeholder="nome" onChange={alterardados}></input>
+            <input type="text" disabled={loading} name="image" data-test="user-image-input" placeholder="foto" onChange={alterardados}></input>
             <button type="submit" data-test="signup-btn" disabled={loading ? true : false}>
             {
             loading

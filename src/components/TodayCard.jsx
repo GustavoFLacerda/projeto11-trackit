@@ -45,8 +45,11 @@ export default function TodayCard(props){
         <TodayCardStyle data-test="today-habit-container">
             <div>
                 <h1 data-test="today-habit-name">{props.name}</h1>
-                <h4 data-test="today-habit-sequence">Sequência atual: {props.currentSequence} dias</h4>
-                <h4 data-test="today-habit-record">Seu recorde: {props.highestSequence} dias</h4>
+                <SequenceC feito={feito}
+                data-test="today-habit-sequence">Sequência atual: <span>{props.currentSequence}</span> dias</SequenceC>
+                 <SequenceH current={props.currentSequence} 
+                highest={props.highestSequence}
+                data-test="today-habit-record">Seu recorde: <span>{props.highestSequence}</span> dias</SequenceH>
             </div>
             <Done data-test="today-habit-check-btn" onClick={definirfeito} feito={feito}>✓</Done>
         </TodayCardStyle>
@@ -84,13 +87,7 @@ div{
     flex-direction: column;
 }
 
-div h4{
-    font-style: normal;
-font-weight: 400;
-font-size: 12.976px;
-line-height: 16px;
-color: #666666;
-}
+
 
 div h1{
     font-family: 'Lexend Deca';
@@ -102,4 +99,38 @@ margin-bottom: 7px;
 
 color: #666666;
 }
+`
+
+const SequenceC = styled.h4`
+font-style: normal;
+font-weight: 400;
+font-size: 12.976px;
+line-height: 16px;
+color: #666666;
+
+span{
+   font-style: normal;
+   font-weight: 400;
+   font-size: 12.976px;
+   line-height: 16px;
+   color: ${props => props.feito === true ? "#8FC549" : "#666666"};
+}
+
+`
+
+const SequenceH = styled.h4`
+font-style: normal;
+font-weight: 400;
+font-size: 12.976px;
+line-height: 16px;
+color: #666666;
+
+span{
+   font-style: normal;
+   font-weight: 400;
+   font-size: 12.976px;
+   line-height: 16px;
+   color: ${props => props.current >= props.highest?"#8FC549" : "#666666"};
+}
+
 `

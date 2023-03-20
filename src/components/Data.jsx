@@ -5,7 +5,7 @@ export default function Data() {
     let month = data.getMonth() + 1;
     let diasemana = data.getDay();
     let diames = data.getDate();
-    let dias = ["domingo", "segunda", "terça", "quarta", "quinta", "sexta", "sábado"];
+    let dias = ["Domingo", "Segunda", "Terça", "Quarta", "Quinta", "Sexta", "Sábado"];
 
   
     return (
