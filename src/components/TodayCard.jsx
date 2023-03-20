@@ -46,10 +46,10 @@ export default function TodayCard(props){
             <div>
                 <h1 data-test="today-habit-name">{props.name}</h1>
                 <SequenceC feito={feito}
-                data-test="today-habit-sequence">Sequência atual: <span>{props.currentSequence}</span> dias</SequenceC>
+                data-test="today-habit-sequence">Sequência atual: <span>{props.currentSequence} dias</span></SequenceC>
                  <SequenceH current={props.currentSequence} 
                 highest={props.highestSequence}
-                data-test="today-habit-record">Seu recorde: <span>{props.highestSequence}</span> dias</SequenceH>
+                data-test="today-habit-record">Seu recorde: <span>{props.highestSequence} dias</span></SequenceH>
             </div>
             <Done data-test="today-habit-check-btn" onClick={definirfeito} feito={feito}>✓</Done>
         </TodayCardStyle>
