@@ -75,7 +75,7 @@ const CadastrarHabito = (props) => {
  
      return(
          <ContainerForm onSubmit={cadastrarhabito} data-test="habit-create-container">
-             <input data-test="habit-name-input" type="text" onChange={(e) => {setDados({name: e.target.value, days}); console.log({name: e.target.value, days})}} name="name" placeholder="nome do hábito" />
+             <input disabled={loading} data-test="habit-name-input" type="text" onChange={(e) => {setDados({name: e.target.value, days}); console.log({name: e.target.value, days})}} name="name" placeholder="nome do hábito" />
              <div>
                   {
                      dias.map((d, index) => {
@@ -102,7 +102,7 @@ const CadastrarHabito = (props) => {
 
 const DiaCadastroCard = (props) => {
     return(
-        <Dia data-test="habit-day" onClick={() => props.selecionardia(props.id)} selecionado={props.selecionado}>{props.name}</Dia>
+        <Dia disabled={loading} data-test="habit-day" onClick={() => props.selecionardia(props.id)} selecionado={props.selecionado}>{props.name}</Dia>
     )
 }
 
