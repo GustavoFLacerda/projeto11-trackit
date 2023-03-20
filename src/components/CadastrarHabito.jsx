@@ -39,7 +39,7 @@ const CadastrarHabito = (props) => {
     function cadastrarhabito(e){
        e.preventDefault();
        setLoading(true);
-       if(dados.name === ""){
+       if(!dados.name || dados.name === ""){
         alert("Erro: nome de hábito vazio")
        }
        else{
